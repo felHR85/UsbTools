@@ -29,6 +29,7 @@ const char DEVICE[] = "-de";
 const char INTERFACE[] = "-in";
 const char ENDPOINT[] = "-en";
 const char TEST_PARSER[] = "-tp";
+const char HELP[] = "-h";
 
 typedef struct UsbParser
 {
@@ -59,7 +60,7 @@ typedef struct UsbParser
     
 }UsbParser;
 
-void parse_commands(UsbParser* parser, int argc, const char * argv[]);
+int parse_commands(UsbParser* parser, int argc, const char * argv[]);
 void free_parser(UsbParser* parser);
 
 #endif
