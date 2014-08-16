@@ -19,6 +19,16 @@
  * -tp: Test Parser
  */
 
+/* Error codes:
+ * 0 == OK
+ * 1 == Invalid command
+ * 2 == Repeated Value
+ * 3 == No direction specified
+ * 4 == No Type specified
+ * 5 == No Recipient
+ *
+ */
+
 const char HOST_TO_DEVICE[] = "-hd";
 const char DEVICE_TO_HOST[] = "-dh";
 const char STANDARD[] = "-st";
@@ -30,6 +40,13 @@ const char INTERFACE[] = "-in";
 const char ENDPOINT[] = "-en";
 const char TEST_PARSER[] = "-tp";
 const char HELP[] = "-h";
+
+const int OK = 0;
+const int INVALID = 1;
+const int REPEATED_VALUE = 2;
+const int NO_DIR = 3;
+const int NO_TYPE = 4;
+const int NO_RECIPIENT = 5;
 
 typedef struct UsbParser
 {
@@ -62,5 +79,7 @@ typedef struct UsbParser
 
 int parse_commands(UsbParser* parser, int argc, const char * argv[]);
 void free_parser(UsbParser* parser);
+int help_selected(UsbParser* parser);
+void print_help();
 
 #endif

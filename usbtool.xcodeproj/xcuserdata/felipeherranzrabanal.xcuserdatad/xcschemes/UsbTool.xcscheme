@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9E16900E199E10AF0083F5EA"
-               BuildableName = "UsbTool"
+               BuildableName = "usbtool.temp_caseinsensitive_rename"
                BlueprintName = "usbtool.temp_caseinsensitive_rename"
                ReferencedContainer = "container:usbtool.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E16900E199E10AF0083F5EA"
-            BuildableName = "UsbTool"
+            BuildableName = "usbtool.temp_caseinsensitive_rename"
             BlueprintName = "usbtool.temp_caseinsensitive_rename"
             ReferencedContainer = "container:usbtool.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E16900E199E10AF0083F5EA"
-            BuildableName = "UsbTool"
+            BuildableName = "usbtool.temp_caseinsensitive_rename"
             BlueprintName = "usbtool.temp_caseinsensitive_rename"
             ReferencedContainer = "container:usbtool.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E16900E199E10AF0083F5EA"
-            BuildableName = "UsbTool"
+            BuildableName = "usbtool.temp_caseinsensitive_rename"
             BlueprintName = "usbtool.temp_caseinsensitive_rename"
             ReferencedContainer = "container:usbtool.xcodeproj">
          </BuildableReference>

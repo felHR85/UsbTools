@@ -10,6 +10,7 @@
 		9E169013199E10AF0083F5EA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E169012199E10AF0083F5EA /* main.c */; };
 		9E169015199E10AF0083F5EA /* UsbTool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9E169014199E10AF0083F5EA /* UsbTool.1 */; };
 		9E16901D199E5EA30083F5EA /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E16901C199E5EA30083F5EA /* parser.c */; };
+		9E3F99ED199F68BD0014B18B /* testparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F99EB199F654D0014B18B /* testparser.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		9E169014199E10AF0083F5EA /* UsbTool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UsbTool.1; sourceTree = "<group>"; };
 		9E16901B199E1B9F0083F5EA /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
 		9E16901C199E5EA30083F5EA /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
+		9E3F99EA199F64BF0014B18B /* testparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testparser.h; sourceTree = "<group>"; };
+		9E3F99EB199F654D0014B18B /* testparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testparser.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				9E169014199E10AF0083F5EA /* UsbTool.1 */,
 				9E16901B199E1B9F0083F5EA /* parser.h */,
 				9E16901C199E5EA30083F5EA /* parser.c */,
+				9E3F99EA199F64BF0014B18B /* testparser.h */,
+				9E3F99EB199F654D0014B18B /* testparser.c */,
 			);
 			name = usbtool;
 			path = UsbTool;
@@ -124,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E16901D199E5EA30083F5EA /* parser.c in Sources */,
+				9E3F99ED199F68BD0014B18B /* testparser.c in Sources */,
 				9E169013199E10AF0083F5EA /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +240,7 @@
 				9E16901A199E10AF0083F5EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
