@@ -29,24 +29,25 @@
  *
  */
 
-const char HOST_TO_DEVICE[] = "-hd";
-const char DEVICE_TO_HOST[] = "-dh";
-const char STANDARD[] = "-st";
-const char CLASS[] = "-cl";
-const char VENDOR[] = "-ve";
-const char RESERVED[] = "-re";
-const char DEVICE[] = "-de";
-const char INTERFACE[] = "-in";
-const char ENDPOINT[] = "-en";
-const char TEST_PARSER[] = "-tp";
-const char HELP[] = "-h";
+extern const char HOST_TO_DEVICE[];
+extern const char DEVICE_TO_HOST[];
+extern const char STANDARD[];
+extern const char CLASS[];
+extern const char VENDOR[];
+extern const char RESERVED[];
+extern const char DEVICE[];
+extern const char INTERFACE[];
+extern const char ENDPOINT[];
+extern const char TEST_PARSER[];
+extern const char HELP[];
 
-const int OK = 0;
-const int INVALID = 1;
-const int REPEATED_VALUE = 2;
-const int NO_DIR = 3;
-const int NO_TYPE = 4;
-const int NO_RECIPIENT = 5;
+extern const int OK_PARAMS;
+extern const int INVALID;
+extern const int REPEATED_VALUE;
+extern const int NO_DIR;
+extern const int NO_TYPE;
+extern const int NO_RECIPIENT;
+extern const int NO_ARGUMENTS;
 
 typedef struct UsbParser
 {

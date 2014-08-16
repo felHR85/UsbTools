@@ -14,12 +14,12 @@ int main(int argc, const char * argv[])
     {
         if(test_selected(parser)) // test parser
         {
-           
+            print_parsed_data(parser);
 
         }else if(help_selected(parser)) // show help
         {
             
-        }else
+        }else 
         {
             // TO-DO USB Stuff
         }

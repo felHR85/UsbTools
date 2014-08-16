@@ -7,10 +7,31 @@
 #include <string.h>
 #include "parser.h"
 
+
+const char HOST_TO_DEVICE[] = "-hd";
+const char DEVICE_TO_HOST[] = "-dh";
+const char STANDARD[] = "-st";
+const char CLASS[] = "-cl";
+const char VENDOR[] = "-ve";
+const char RESERVED[] = "-re";
+const char DEVICE[] = "-de";
+const char INTERFACE[] = "-in";
+const char ENDPOINT[] = "-en";
+const char TEST_PARSER[] = "-tp";
+const char HELP[] = "-h";
+
+const int OK_PARAMS = 0;
+const int INVALID = -1;
+const int REPEATED_VALUE = -2;
+const int NO_DIR = -3;
+const int NO_TYPE = -4;
+const int NO_RECIPIENT = -5;
+const int NO_ARGUMENTS = -6;
+
+
 static void allocate_parser(UsbParser* parser)
 {
-    if(parser == NULL)
-        parser = malloc(sizeof(UsbParser));
+    parser = (UsbParser*) malloc(sizeof(UsbParser));
 }
 
 static void init_parser(UsbParser* parser)
@@ -82,7 +103,7 @@ static int check_parameters_validity(UsbParser* parser)
     {
         return NO_RECIPIENT;
     }
-    return 0;
+    return OK_PARAMS;
 }
 
 
@@ -90,6 +111,9 @@ int parse_commands(UsbParser* parser, int argc, const char * argv[])
 {
     allocate_parser(parser);
     init_parser(parser);
+    
+    if(argc == 1)
+        return NO_ARGUMENTS;
     
     int commands = argc - 1;
     
