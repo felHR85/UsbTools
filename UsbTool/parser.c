@@ -28,29 +28,27 @@ const int NO_TYPE = -4;
 const int NO_RECIPIENT = -5;
 const int NO_ARGUMENTS = -6;
 
-
-static void allocate_parser(UsbParser* parser)
+static void init_parser(UsbParser** parser)
 {
-    parser = (UsbParser*) malloc(sizeof(UsbParser));
+    if(parser == NULL)
+    {
+        *parser = (UsbParser*) malloc(sizeof(UsbParser));
+        (*parser)->host2device = 0;
+        (*parser)->device2host = 0;
+        (*parser)->standard_req = 0;
+        (*parser)->class_req = 0;
+        (*parser)->vendor_req = 0;
+        (*parser)->reserved_req = 0;
+        (*parser)->device = 0;
+        (*parser)->endpoint = 0;
+        (*parser)->interface = 0;
+        (*parser)->test_parser = 0;
+        (*parser)->help = 0;
+    }
 }
 
-static void init_parser(UsbParser* parser)
-{
-    parser->host2device = 0;
-    parser->device2host = 0;
-    parser->standard_req = 0;
-    parser->class_req = 0;
-    parser->vendor_req = 0;
-    parser->reserved_req = 0;
-    parser->device = 0;
-    parser->endpoint = 0;
-    parser->interface = 0;
-    parser->test_parser = 0;
-    parser->help = 0;
-}
 
-
-static int hasDirection(UsbParser* parser)
+static int has_direction(UsbParser* parser)
 {
     if(parser->host2device == 0 && parser->device2host == 0)
         return 0;
@@ -58,7 +56,7 @@ static int hasDirection(UsbParser* parser)
         return 1;
 }
 
-static int hasType(UsbParser* parser)
+static int has_type(UsbParser* parser)
 {
     if(parser->standard_req == 0 && parser->class_req == 0 && parser->vendor_req == 0 && parser->reserved_req == 0 )
         return 0;
@@ -66,7 +64,7 @@ static int hasType(UsbParser* parser)
         return 1;
 }
 
-static int hasRecipient(UsbParser* parser)
+static int has_recipient(UsbParser* parser)
 {
     if(parser->device == 0 && parser->endpoint == 0 && parser->interface == 0)
          return 0;
@@ -74,7 +72,7 @@ static int hasRecipient(UsbParser* parser)
         return 1;
 }
 
-static int hasTest(UsbParser* parser)
+static int has_test(UsbParser* parser)
 {
     if(parser->test_parser == 0)
         return 0;
@@ -82,7 +80,7 @@ static int hasTest(UsbParser* parser)
         return 1;
 }
 
-static int hasHelp(UsbParser* parser)
+static int has_help(UsbParser* parser)
 {
     if(parser->help == 0)
         return 0;
@@ -93,13 +91,13 @@ static int hasHelp(UsbParser* parser)
 
 static int check_parameters_validity(UsbParser* parser)
 {
-    if(!hasHelp(parser) && hasDirection(parser) == 0)
+    if(!has_help(parser) && has_direction(parser) == 0)
     {
         return NO_DIR;
-    }else if(!hasHelp(parser) && hasType(parser) == 0)
+    }else if(!has_help(parser) && has_type(parser) == 0)
     {
         return NO_TYPE;
-    }else if(!hasHelp(parser) && hasRecipient(parser) == 0)
+    }else if(!has_help(parser) && has_recipient(parser) == 0)
     {
         return NO_RECIPIENT;
     }
@@ -109,8 +107,7 @@ static int check_parameters_validity(UsbParser* parser)
 
 int parse_commands(UsbParser* parser, int argc, const char * argv[])
 {
-    allocate_parser(parser);
-    init_parser(parser);
+    init_parser(&parser);
     
     if(argc == 1)
         return NO_ARGUMENTS;
@@ -121,123 +118,123 @@ int parse_commands(UsbParser* parser, int argc, const char * argv[])
     {
         if(strcmp(HOST_TO_DEVICE, argv[i]) == 0)
         {
-            if(!hasDirection(parser))
+            if(!has_direction(parser))
             {
                 parser->host2device = 1;
             }
             else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
             
         }else if(strcmp(DEVICE_TO_HOST, argv[i]) == 0)
         {
-            if(!hasDirection(parser))
+            if(!has_direction(parser))
             {
                 parser->device2host = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(STANDARD, argv[i]) == 0)
         {
-            if(!hasType(parser))
+            if(!has_type(parser))
             {
                 parser->standard_req = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(CLASS, argv[i]) == 0)
         {
-            if(!hasType(parser))
+            if(!has_type(parser))
             {
                 parser->class_req = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
 
         }else if(strcmp(VENDOR, argv[i]) == 0)
         {
-            if(!hasType(parser))
+            if(!has_type(parser))
             {
                 parser->vendor_req = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(RESERVED, argv[i]) == 0)
         {
-            if(!hasType(parser))
+            if(!has_type(parser))
             {
                 parser->reserved_req= 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
             
         }else if(strcmp(DEVICE, argv[i]))
         {
-            if(!hasRecipient(parser))
+            if(!has_recipient(parser))
             {
                 parser->device = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(ENDPOINT, argv[i]))
         {
-            if(!hasRecipient(parser))
+            if(!has_recipient(parser))
             {
                 parser->endpoint = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(INTERFACE, argv[i]))
         {
-            if(!hasRecipient(parser))
+            if(!has_recipient(parser))
             {
                 parser->interface = 1;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(TEST_PARSER, argv[i]))
         {
-            if(!hasTest(parser))
+            if(!has_test(parser))
             {
                 parser->test_parser = 1;
                
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(HELP, argv[i]))
         {
-            if(!hasDirection(parser) && !hasType(parser) && !hasRecipient(parser) && !hasTest(parser))
+            if(!has_direction(parser) && !has_type(parser) && !has_recipient(parser) && !has_test(parser))
             {
                 parser->help = 1;
                 return 0;
             }else
             {
-                free_parser(parser);
+                free_parser(&parser);
                 return REPEATED_VALUE;
             }
         }else
         {
-            free_parser(parser);
+            free_parser(&parser);
             return INVALID;
         }
     }
@@ -245,10 +242,10 @@ int parse_commands(UsbParser* parser, int argc, const char * argv[])
     return check_parameters_validity(parser);
 }
 
-void free_parser(UsbParser* parser)
+void free_parser(UsbParser** parser)
 {
-    if(parser != NULL)
-        free(parser);
+    if((*parser) != NULL)
+        free((*parser));
 }
 
 int help_selected(UsbParser* parser)
