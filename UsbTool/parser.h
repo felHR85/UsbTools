@@ -17,6 +17,7 @@
  * -en: Endpoint
  * -h: Help
  * -tp: Test Parser
+ * -l: List devices
  */
 
 /* Error codes:
@@ -40,6 +41,10 @@ extern const char INTERFACE[];
 extern const char ENDPOINT[];
 extern const char TEST_PARSER[];
 extern const char HELP[];
+extern const char LIST[];
+
+extern const char VENDOR_ID[];
+extern const char PRODUCT_ID[];
 
 extern const int OK_PARAMS;
 extern const int INVALID;
@@ -48,6 +53,7 @@ extern const int NO_DIR;
 extern const int NO_TYPE;
 extern const int NO_RECIPIENT;
 extern const int NO_ARGUMENTS;
+extern const int NO_VID_PID;
 
 typedef struct UsbParser
 {
@@ -70,8 +76,15 @@ typedef struct UsbParser
     int endpoint;
     int interface;
     
+    /* Vid and Pid */
+    char* vid;
+    char* pid;
+    
     /* Test */
     int test_parser;
+    
+    /* List */
+    int list;
     
     /* Help */
     int help;
