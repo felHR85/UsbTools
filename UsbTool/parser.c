@@ -34,21 +34,18 @@ const int NO_VID_PID = -7;
 
 static void init_parser(UsbParser** parser)
 {
-    if(parser == NULL)
-    {
-        *parser = (UsbParser*) malloc(sizeof(UsbParser));
-        (*parser)->host2device = 0;
-        (*parser)->device2host = 0;
-        (*parser)->standard_req = 0;
-        (*parser)->class_req = 0;
-        (*parser)->vendor_req = 0;
-        (*parser)->reserved_req = 0;
-        (*parser)->device = 0;
-        (*parser)->endpoint = 0;
-        (*parser)->interface = 0;
-        (*parser)->test_parser = 0;
-        (*parser)->help = 0;
-    }
+    *parser = (UsbParser*) malloc(sizeof(UsbParser));
+    (*parser)->host2device = 0;
+    (*parser)->device2host = 0;
+    (*parser)->standard_req = 0;
+    (*parser)->class_req = 0;
+    (*parser)->vendor_req = 0;
+    (*parser)->reserved_req = 0;
+    (*parser)->device = 0;
+    (*parser)->endpoint = 0;
+    (*parser)->interface = 0;
+    (*parser)->test_parser = 0;
+    (*parser)->help = 0;
 }
 
 
@@ -141,7 +138,7 @@ static int hex_checker(const char* hex)
 
 static int is_vid(const char* param)
 {
-    if(*param == VENDOR_ID[0] && *(param++) == VENDOR_ID[1])
+    if(*param == VENDOR_ID[0] && *(++param) == VENDOR_ID[1])
     {
         param++;
         return hex_checker(param);
@@ -153,7 +150,7 @@ static int is_vid(const char* param)
 
 static int is_pid(const char* param)
 {
-    if(*param == PRODUCT_ID[0] && *(param++) == PRODUCT_ID[1])
+    if(*param == PRODUCT_ID[0] && *(++param) == PRODUCT_ID[1])
     {
         param++;
         return hex_checker(param);
@@ -325,6 +322,7 @@ int parse_commands(UsbParser* parser, int argc, const char * argv[])
         {
             if(!has_vid(parser))
             {
+                // Allocate Vid!!
                 strncpy(parser->vid, &argv[i][2], 4);
             }else
             {
@@ -335,6 +333,7 @@ int parse_commands(UsbParser* parser, int argc, const char * argv[])
         {
             if(!has_pid(parser))
             {
+                 // Allocate Pid!!
                 strncpy(parser->pid, &argv[i][2], 4);
             }else
             {

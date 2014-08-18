@@ -23,6 +23,9 @@ int main(int argc, const char * argv[])
         {
             // TO-DO USB Stuff
         }
+    }else
+    {
+        
     }
     return 0;
 }

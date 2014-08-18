@@ -28,9 +28,33 @@ void print_parsed_data(UsbParser* parser)
         printf("Type: Reserved Request\n");
     
     if(parser->device == 1)
-        printf("Recipient: Device");
+        printf("Recipient: Device\n");
     else if(parser->endpoint == 1)
-        printf("Recipient: Endpoint");
+        printf("Recipient: Endpoint\n");
     else if(parser->interface == 1)
-        printf("Recipient: Interface");
+        printf("Recipient: Interface\n");
+    
+    if(parser->vid != NULL)
+    {
+        while(*(parser->vid) != '\0')
+        {
+            printf("Vid:  %c \n", *(parser->vid));
+            parser->vid++;
+        }
+    }
+    
+    if(parser->pid != NULL)
+    {
+        while(*(parser->pid) != '\0')
+        {
+            printf("Pid:  %c \n", *(parser->pid));
+            parser->pid++;
+        }
+    }
+    
+    if(parser->list == 1)
+        printf("List Usb Devices");
+    
+    if(parser->help == 1)
+        printf("Show Help");
 }
