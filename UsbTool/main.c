@@ -23,10 +23,10 @@ int main(int argc, const char * argv[])
             
         }else if(0) // TO-DO List usb devices
         {
-            // TO-DO USB Stuff
+            
         }else
         {
-            
+            // TO-DO USB Stuff
         }
     }else
     {

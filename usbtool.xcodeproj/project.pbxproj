@@ -12,6 +12,7 @@
 		9E16901D199E5EA30083F5EA /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E16901C199E5EA30083F5EA /* parser.c */; };
 		9E3F99ED199F68BD0014B18B /* testparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F99EB199F654D0014B18B /* testparser.c */; };
 		9E6D016E19A36453007B8874 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D016D19A36453007B8874 /* error.c */; };
+		9E6D017119A39922007B8874 /* usbfacade.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D017019A39922007B8874 /* usbfacade.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		9E3F99EB199F654D0014B18B /* testparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testparser.c; sourceTree = "<group>"; };
 		9E6D016C19A363F8007B8874 /* error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		9E6D016D19A36453007B8874 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
+		9E6D016F19A38FBB007B8874 /* usbfacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = usbfacade.h; sourceTree = "<group>"; };
+		9E6D017019A39922007B8874 /* usbfacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = usbfacade.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 				9E3F99EB199F654D0014B18B /* testparser.c */,
 				9E6D016C19A363F8007B8874 /* error.h */,
 				9E6D016D19A36453007B8874 /* error.c */,
+				9E6D016F19A38FBB007B8874 /* usbfacade.h */,
+				9E6D017019A39922007B8874 /* usbfacade.c */,
 			);
 			name = usbtool;
 			path = UsbTool;
@@ -136,6 +141,7 @@
 				9E16901D199E5EA30083F5EA /* parser.c in Sources */,
 				9E3F99ED199F68BD0014B18B /* testparser.c in Sources */,
 				9E6D016E19A36453007B8874 /* error.c in Sources */,
+				9E6D017119A39922007B8874 /* usbfacade.c in Sources */,
 				9E169013199E10AF0083F5EA /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,7 +152,7 @@
 		9E169016199E10AF0083F5EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -184,7 +190,7 @@
 		9E169017199E10AF0083F5EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
