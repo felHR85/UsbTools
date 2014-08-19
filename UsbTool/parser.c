@@ -34,7 +34,7 @@ const int NO_VID_PID = -7;
 
 static void init_parser(UsbParser** parser)
 {
-    *parser = (UsbParser*) malloc(sizeof(UsbParser));
+    *parser = malloc(sizeof(UsbParser));
     (*parser)->host2device = 0;
     (*parser)->device2host = 0;
     (*parser)->standard_req = 0;
@@ -180,175 +180,175 @@ static int check_parameters_validity(UsbParser* parser)
 }
 
 
-int parse_commands(UsbParser* parser, int argc, const char * argv[])
+int parse_commands(UsbParser** parser, int argc, const char * argv[])
 {
-    init_parser(&parser);
+    init_parser(parser);
     
     if(argc == 1)
         return NO_ARGUMENTS;
     
     int commands = argc - 1;
     
-    for(int i=1;i<=commands-1;i++)
+    for(int i=1;i<=commands;i++)
     {
         if(strcmp(HOST_TO_DEVICE, argv[i]) == 0)
         {
-            if(!has_direction(parser))
+            if(!has_direction(*parser))
             {
-                parser->host2device = 1;
+                (*parser)->host2device = 1;
             }
             else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
             
         }else if(strcmp(DEVICE_TO_HOST, argv[i]) == 0)
         {
-            if(!has_direction(parser))
+            if(!has_direction(*parser))
             {
-                parser->device2host = 1;
+                (*parser)->device2host = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(STANDARD, argv[i]) == 0)
         {
-            if(!has_type(parser))
+            if(!has_type(*parser))
             {
-                parser->standard_req = 1;
+                (*parser)->standard_req = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(CLASS, argv[i]) == 0)
         {
-            if(!has_type(parser))
+            if(!has_type(*parser))
             {
-                parser->class_req = 1;
+                (*parser)->class_req = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
             
         }else if(strcmp(VENDOR, argv[i]) == 0)
         {
-            if(!has_type(parser))
+            if(!has_type(*parser))
             {
-                parser->vendor_req = 1;
+                (*parser)->vendor_req = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(RESERVED, argv[i]) == 0)
         {
-            if(!has_type(parser))
+            if(!has_type(*parser))
             {
-                parser->reserved_req= 1;
+                (*parser)->reserved_req= 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
             
         }else if(strcmp(DEVICE, argv[i]) == 0)
         {
-            if(!has_recipient(parser))
+            if(!has_recipient(*parser))
             {
-                parser->device = 1;
+                (*parser)->device = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(ENDPOINT, argv[i]) == 0)
         {
-            if(!has_recipient(parser))
+            if(!has_recipient(*parser))
             {
-                parser->endpoint = 1;
+                (*parser)->endpoint = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(INTERFACE, argv[i]) == 0)
         {
-            if(!has_recipient(parser))
+            if(!has_recipient(*parser))
             {
-                parser->interface = 1;
+                (*parser)->interface = 1;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(TEST_PARSER, argv[i]) == 0)
         {
-            if(!has_test(parser))
+            if(!has_test(*parser))
             {
-                parser->test_parser = 1;
+                (*parser)->test_parser = 1;
                 
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(HELP, argv[i]) == 0)
         {
-            if(!has_direction(parser) && !has_type(parser) && !has_recipient(parser) && !has_test(parser) && !has_pid(parser) && !has_vid(parser))
+            if(!has_direction(*parser) && !has_type(*parser) && !has_recipient(*parser) && !has_test(*parser) && !has_pid(*parser) && !has_vid(*parser))
             {
-                parser->help = 1;
+                (*parser)->help = 1;
                 return 0;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(strcmp(LIST, argv[i]) == 0)
         {
-            if(!has_direction(parser) && !has_type(parser) && !has_recipient(parser) && !has_test(parser) && !has_test(parser) && !has_pid(parser) && !has_vid(parser))
+            if(!has_direction(*parser) && !has_type(*parser) && !has_recipient(*parser) && !has_test(*parser) && !has_test(*parser) && !has_pid(*parser) && !has_vid(*parser))
             {
-                parser->list = 1;
+                (*parser)->list = 1;
                 return 0;
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(is_vid(&argv[i][0]))
         {
-            if(!has_vid(parser))
+            if(!has_vid(*parser))
             {
-                // Allocate Vid!!
-                strncpy(parser->vid, &argv[i][2], 4);
+                (*parser)->vid = malloc(sizeof(char) * 4);
+                strncpy((*parser)->vid, &argv[i][2], 4);
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
         }else if(is_pid(&argv[i][0]))
         {
-            if(!has_pid(parser))
+            if(!has_pid(*parser))
             {
-                 // Allocate Pid!!
-                strncpy(parser->pid, &argv[i][2], 4);
+                (*parser)->pid = malloc(sizeof(char) * 5);
+                strncpy((*parser)->pid, &argv[i][2], 4);
             }else
             {
-                free_parser(&parser);
+                free_parser(parser);
                 return REPEATED_VALUE;
             }
 
         }else
         {
-            free_parser(&parser);
+            free_parser(parser);
             return INVALID;
         }
     }
     
-    return check_parameters_validity(parser);
+    return check_parameters_validity(*parser);
 }
 
 void free_parser(UsbParser** parser)

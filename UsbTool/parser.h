@@ -91,7 +91,7 @@ typedef struct UsbParser
     
 }UsbParser;
 
-int parse_commands(UsbParser* parser, int argc, const char * argv[]);
+int parse_commands(UsbParser** parser, int argc, const char * argv[]);
 void free_parser(UsbParser** parser);
 int help_selected(UsbParser* parser);
 void print_help();

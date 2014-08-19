@@ -36,21 +36,27 @@ void print_parsed_data(UsbParser* parser)
     
     if(parser->vid != NULL)
     {
+        printf("Vid: ");
         while(*(parser->vid) != '\0')
         {
-            printf("Vid:  %c \n", *(parser->vid));
+            printf("%c", *(parser->vid));
             parser->vid++;
         }
     }
     
+    printf("\n");
+
     if(parser->pid != NULL)
     {
+        printf("Pid: ");
         while(*(parser->pid) != '\0')
         {
-            printf("Pid:  %c \n", *(parser->pid));
+            printf("%c", *(parser->pid));
             parser->pid++;
         }
     }
+    
+    printf("\n");
     
     if(parser->list == 1)
         printf("List Usb Devices");

@@ -59,23 +59,23 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-hd"
+            argument = "-dh"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-ve"
+            argument = "-st"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-de"
+            argument = "-en"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-v0123"
+            argument = "-vdead"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-p0123"
+            argument = "-pcafe"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

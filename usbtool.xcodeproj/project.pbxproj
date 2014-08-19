@@ -11,6 +11,7 @@
 		9E169015199E10AF0083F5EA /* UsbTool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9E169014199E10AF0083F5EA /* UsbTool.1 */; };
 		9E16901D199E5EA30083F5EA /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E16901C199E5EA30083F5EA /* parser.c */; };
 		9E3F99ED199F68BD0014B18B /* testparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F99EB199F654D0014B18B /* testparser.c */; };
+		9E6D016E19A36453007B8874 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D016D19A36453007B8874 /* error.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		9E16901C199E5EA30083F5EA /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
 		9E3F99EA199F64BF0014B18B /* testparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testparser.h; sourceTree = "<group>"; };
 		9E3F99EB199F654D0014B18B /* testparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testparser.c; sourceTree = "<group>"; };
+		9E6D016C19A363F8007B8874 /* error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		9E6D016D19A36453007B8874 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 				9E16901C199E5EA30083F5EA /* parser.c */,
 				9E3F99EA199F64BF0014B18B /* testparser.h */,
 				9E3F99EB199F654D0014B18B /* testparser.c */,
+				9E6D016C19A363F8007B8874 /* error.h */,
+				9E6D016D19A36453007B8874 /* error.c */,
 			);
 			name = usbtool;
 			path = UsbTool;
@@ -130,6 +135,7 @@
 			files = (
 				9E16901D199E5EA30083F5EA /* parser.c in Sources */,
 				9E3F99ED199F68BD0014B18B /* testparser.c in Sources */,
+				9E6D016E19A36453007B8874 /* error.c in Sources */,
 				9E169013199E10AF0083F5EA /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
