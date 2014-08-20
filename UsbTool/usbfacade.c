@@ -3,6 +3,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "usbfacade.h"
 #include "parser.h"
 #include </opt/local/include/libusb-1.0/libusb.h>
@@ -12,50 +13,109 @@ static int open_usb_session(libusb_context** context)
     return libusb_init(context);
 }
 
-static void close_usb_session(libusb_context* context)
+static void close_usb_session(libusb_context** context)
 {
-    libusb_exit(context);
+    libusb_exit(*context);
 }
 
-static libusb_device* get_device(libusb_device** devices,ssize_t count,char* vid, char* pid)
+static uint8_t create_setup_bmrequest(UsbParser* parser)
 {
-    libusb_device* device;
+    uint8_t value;
     
-    int i = 0;
-    while(i <= count - 1)
-    {
-        struct libusb_device_descriptor descriptor;
-        libusb_get_device_descriptor(devices[i],&descriptor);
-        // TO-DO check given pid and vid
-        // char vid and pid (Hex values) to uint8_t is not trivial. Need a function for that!!!!
-        i++;
-    }
+    if(parser->host2device == 1)
+        value = 0x00;
+    else if(parser->device2host == 1)
+        value = 0x80;
     
-    return device;
+    if(parser->standard_req == 1)
+        value += 0x00;
+    else if(parser->class_req == 1)
+        value += 0x20;
+    else if(parser->vendor_req == 1)
+        value += 0x40;
+    else if(parser->reserved_req == 1)
+        value += 0x60;
+    
+    if(parser->device == 1)
+        value += 0x00;
+    else if(parser->interface == 1)
+        value += 0x01;
+    else if(parser->endpoint == 1)
+        value += 0x02;
+    
+    return value;
 }
-
 
 int setup_packet(UsbParser* parser, UsbResponse*** requests)
 {
     libusb_context* context;
-    libusb_device** devices;
     
     if(open_usb_session(&context) == 0) // LibUsb session opened
     {
-        ssize_t count = libusb_get_device_list(context, &devices);
+        int vid_integer = (int) strtol(parser->vid, NULL, 16);
+        int pid_integer = (int) strtol(parser->pid, NULL, 16);
         
-        if(count < 0) // error listing devices
+        libusb_device_handle* device_handle = libusb_open_device_with_vid_pid(context, vid_integer, pid_integer);
+        if(device_handle != NULL)
         {
+            /*
+            if(libusb_kernel_driver_active(device_handle, 0))
+            {
+                if(libusb_detach_kernel_driver(device_handle, 0) != 0)
+                {
+                    libusb_close(device_handle);
+                    close_usb_session(&context);
+                    return -1;
+
+                }
+            }
+             */
+
+            uint8_t bm_request = create_setup_bmrequest(parser);
+            if(libusb_claim_interface(device_handle, 0))
+            {
+                for(uint8_t i=0;i<=255;i++)
+                {
+                    int response = libusb_control_transfer(device_handle, bm_request, i, 0x0000, 0x0000, NULL, 0x0000, 500);
+                    
+                    if(response >= 0)
+                    {
+                        
+                    }else if(LIBUSB_ERROR_TIMEOUT)
+                    {
+                        
+                    }else if(LIBUSB_ERROR_PIPE)
+                    {
+                        
+                    }else if(LIBUSB_ERROR_NO_DEVICE)
+                    {
+                        
+                    }else
+                    {
+                        
+                    }
+                }
+            }else
+            {
+                libusb_close(device_handle);
+                close_usb_session(&context);
+                return -1;
+            }
+            
+            libusb_close(device_handle);
+            close_usb_session(&context);
+            return 0;
+        }else
+        {
+            close_usb_session(&context);
             return -1;
         }
-        
-        libusb_device* device = get_device(devices, count, parser->vid, parser->pid);
         
         
     }else // Some error occurred
     {
+        close_usb_session(&context);
         return -1;
     }
-
-    return 0;
+   
 }
