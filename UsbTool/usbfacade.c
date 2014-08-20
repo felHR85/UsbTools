@@ -98,3 +98,43 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
     }
    
 }
+
+int list_usb_devices(UsbDevice*** devices)
+{
+    libusb_context* context;
+    libusb_device** devs;
+    
+    if(open_usb_session(&context) == 0)
+    {
+        ssize_t count = libusb_get_device_list(context, &devs);
+        *devices = malloc(count * sizeof(UsbDevice*));
+        
+        struct libusb_device_descriptor* descriptor;
+        
+        for(int i=0;i<=count-1;i++)
+        {
+            if((*devices[i]) != NULL)
+            {
+                libusb_get_device_descriptor(devs[i], descriptor);
+                (*devices[i])->id_product = descriptor->idProduct;
+                (*devices[i])->id_vendor = descriptor->idVendor;
+            }
+        }
+        
+        libusb_free_device_list(devs, 1);
+        close_usb_session(&context);
+        return (int) count;
+        
+    }else
+    {
+        close_usb_session(&context);
+        return -1;
+    }
+    return 0;
+}
+
+void free_usb_devices(UsbDevice*** devices)
+{
+    if(*devices != NULL)
+        free(*devices);
+}

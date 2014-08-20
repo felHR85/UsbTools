@@ -31,6 +31,8 @@ const int NO_TYPE = -4;
 const int NO_RECIPIENT = -5;
 const int NO_ARGUMENTS = -6;
 const int NO_VID_PID = -7;
+const int TOO_ARGUMENTS_HELP = -8;
+const int TOO_ARGUMENTS_LIST = -9;
 
 static void init_parser(UsbParser** parser)
 {
@@ -308,7 +310,7 @@ int parse_commands(UsbParser** parser, int argc, const char * argv[])
             }else
             {
                 free_parser(parser);
-                return REPEATED_VALUE;
+                return TOO_ARGUMENTS_HELP;
             }
         }else if(strcmp(LIST, argv[i]) == 0)
         {
@@ -319,7 +321,7 @@ int parse_commands(UsbParser** parser, int argc, const char * argv[])
             }else
             {
                 free_parser(parser);
-                return REPEATED_VALUE;
+                return TOO_ARGUMENTS_LIST;
             }
         }else if(is_vid(&argv[i][0]))
         {

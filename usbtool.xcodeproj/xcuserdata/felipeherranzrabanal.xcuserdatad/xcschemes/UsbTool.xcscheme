@@ -63,11 +63,27 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-l"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-tp"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-p0123"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-en"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-st"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-v0f12"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

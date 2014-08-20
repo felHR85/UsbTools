@@ -26,8 +26,14 @@ void print_parsing_error(int error)
         case -6: // NO_ARGUMENTS
             printf("Some arguments are needed. Use -h for Help\n");
             break;
-        case -7:
+        case -7: // NO_VID_PID
             printf("No vid (vendor identification) or pid (product identification) was supplied\n");
+            break;
+        case -8: // TOO_ARGUMENTS_HELP
+            printf("Help requires one argument: -h\n");
+            break;
+        case -9: // TOO_ARGUMENTS_LIST
+            printf("List requires one argument: -l\n");
             break;
         default:
             printf("A parsing error occurred\n");

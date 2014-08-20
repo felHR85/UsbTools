@@ -54,6 +54,8 @@ extern const int NO_TYPE;
 extern const int NO_RECIPIENT;
 extern const int NO_ARGUMENTS;
 extern const int NO_VID_PID;
+extern const int TOO_ARGUMENTS_HELP;
+extern const int TOO_ARGUMENTS_LIST;
 
 typedef struct UsbParser
 {

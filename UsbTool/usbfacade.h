@@ -9,6 +9,8 @@
 
 typedef struct UsbDevice
 {
+    uint16_t id_vendor;
+    uint16_t id_product;
     
 }UsbDevice;
 
@@ -23,8 +25,9 @@ typedef struct UsbResponse
     
 }UsbResponse;
 
-int list_usb_devices(UsbDevice** devices);
+int list_usb_devices(UsbDevice*** devices);
 int setup_packet(UsbParser * parser, UsbResponse*** responses);
+void free_usb_devices(UsbDevice*** devices);
 
 
 #endif
