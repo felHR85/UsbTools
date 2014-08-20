@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "usbfacade.h"
 #include "parser.h"
-#include </opt/local/include/libusb-1.0/libusb.h>
+#include <libusb.h>
 
 static int open_usb_session(libusb_context** context)
 {
@@ -46,6 +46,8 @@ static uint8_t create_setup_bmrequest(UsbParser* parser)
     return value;
 }
 
+
+
 int setup_packet(UsbParser* parser, UsbResponse*** requests)
 {
     libusb_context* context;
@@ -58,42 +60,20 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
         libusb_device_handle* device_handle = libusb_open_device_with_vid_pid(context, vid_integer, pid_integer);
         if(device_handle != NULL)
         {
-            /*
-            if(libusb_kernel_driver_active(device_handle, 0))
-            {
-                if(libusb_detach_kernel_driver(device_handle, 0) != 0)
-                {
-                    libusb_close(device_handle);
-                    close_usb_session(&context);
-                    return -1;
-
-                }
-            }
-             */
-
             uint8_t bm_request = create_setup_bmrequest(parser);
             if(libusb_claim_interface(device_handle, 0))
             {
+                *requests = malloc(sizeof(256 * sizeof(UsbResponse*)));
+                
                 for(uint8_t i=0;i<=255;i++)
                 {
                     int response = libusb_control_transfer(device_handle, bm_request, i, 0x0000, 0x0000, NULL, 0x0000, 500);
                     
-                    if(response >= 0)
-                    {
-                        
-                    }else if(LIBUSB_ERROR_TIMEOUT)
-                    {
-                        
-                    }else if(LIBUSB_ERROR_PIPE)
-                    {
-                        
-                    }else if(LIBUSB_ERROR_NO_DEVICE)
-                    {
-                        
-                    }else
-                    {
-                        
-                    }
+                    (*requests[i])->response = response;
+                    (*requests[i])->bm_request_type = bm_request;
+                    (*requests[i])->b_request = i;
+                    (*requests[i])->w_value = 0x0000;
+                    (*requests[i])->w_index = 0x0000;
                 }
             }else
             {
@@ -110,7 +90,6 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
             close_usb_session(&context);
             return -1;
         }
-        
         
     }else // Some error occurred
     {

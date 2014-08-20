@@ -46,6 +46,9 @@ static void init_parser(UsbParser** parser)
     (*parser)->interface = 0;
     (*parser)->test_parser = 0;
     (*parser)->help = 0;
+    (*parser)->list = 0;
+    (*parser)->vid = NULL;
+    (*parser)->pid = NULL;
 }
 
 

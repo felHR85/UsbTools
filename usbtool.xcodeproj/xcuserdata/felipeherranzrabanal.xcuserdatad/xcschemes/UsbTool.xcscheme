@@ -59,11 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-dh"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-st"
+            argument = "-hd"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -71,15 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-vdead"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-pcafe"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-tp"
+            argument = "-st"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

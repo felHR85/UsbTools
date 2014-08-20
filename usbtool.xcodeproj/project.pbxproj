@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0B53BD19A4FFEF0008CCB8 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0B53BC19A4FFEF0008CCB8 /* libusb-1.0.0.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		9E169013199E10AF0083F5EA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E169012199E10AF0083F5EA /* main.c */; };
 		9E169015199E10AF0083F5EA /* UsbTool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9E169014199E10AF0083F5EA /* UsbTool.1 */; };
 		9E16901D199E5EA30083F5EA /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E16901C199E5EA30083F5EA /* parser.c */; };
@@ -29,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9E0B53BC19A4FFEF0008CCB8 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libusb-1.0.0.dylib"; path = "../../../../opt/local/lib/libusb-1.0.0.dylib"; sourceTree = "<group>"; };
 		9E16900F199E10AF0083F5EA /* usbtool.temp_caseinsensitive_rename */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = usbtool.temp_caseinsensitive_rename; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E169012199E10AF0083F5EA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		9E169014199E10AF0083F5EA /* UsbTool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UsbTool.1; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0B53BD19A4FFEF0008CCB8 /* libusb-1.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,7 @@
 		9E169006199E10AF0083F5EA = {
 			isa = PBXGroup;
 			children = (
+				9E0B53BC19A4FFEF0008CCB8 /* libusb-1.0.0.dylib */,
 				9E169011199E10AF0083F5EA /* usbtool */,
 				9E169010199E10AF0083F5EA /* Products */,
 			);
@@ -222,6 +226,15 @@
 		9E169019199E10AF0083F5EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/local/include/libusb-1.0",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib/,
+				);
 				PRODUCT_NAME = usbtool.temp_caseinsensitive_rename;
 			};
 			name = Debug;
@@ -229,6 +242,15 @@
 		9E16901A199E10AF0083F5EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/local/include/libusb-1.0",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib/,
+				);
 				PRODUCT_NAME = usbtool.temp_caseinsensitive_rename;
 			};
 			name = Release;
