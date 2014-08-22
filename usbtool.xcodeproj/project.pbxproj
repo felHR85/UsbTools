@@ -14,6 +14,8 @@
 		9E3F99ED199F68BD0014B18B /* testparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F99EB199F654D0014B18B /* testparser.c */; };
 		9E6D016E19A36453007B8874 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D016D19A36453007B8874 /* error.c */; };
 		9E6D017119A39922007B8874 /* usbfacade.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D017019A39922007B8874 /* usbfacade.c */; };
+		9E85682119A74ADD00BC9F38 /* logprinter.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E85682019A74ADC00BC9F38 /* logprinter.c */; };
+		9E85682419A755A000BC9F38 /* help.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E85682319A755A000BC9F38 /* help.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +44,10 @@
 		9E6D016D19A36453007B8874 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		9E6D016F19A38FBB007B8874 /* usbfacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = usbfacade.h; sourceTree = "<group>"; };
 		9E6D017019A39922007B8874 /* usbfacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = usbfacade.c; sourceTree = "<group>"; };
+		9E85681F19A749C200BC9F38 /* logprinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logprinter.h; sourceTree = "<group>"; };
+		9E85682019A74ADC00BC9F38 /* logprinter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = logprinter.c; sourceTree = "<group>"; };
+		9E85682219A754BB00BC9F38 /* help.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = help.h; sourceTree = "<group>"; };
+		9E85682319A755A000BC9F38 /* help.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = help.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,10 @@
 				9E6D016D19A36453007B8874 /* error.c */,
 				9E6D016F19A38FBB007B8874 /* usbfacade.h */,
 				9E6D017019A39922007B8874 /* usbfacade.c */,
+				9E85681F19A749C200BC9F38 /* logprinter.h */,
+				9E85682019A74ADC00BC9F38 /* logprinter.c */,
+				9E85682219A754BB00BC9F38 /* help.h */,
+				9E85682319A755A000BC9F38 /* help.c */,
 			);
 			name = usbtool;
 			path = UsbTool;
@@ -143,6 +153,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E16901D199E5EA30083F5EA /* parser.c in Sources */,
+				9E85682119A74ADD00BC9F38 /* logprinter.c in Sources */,
+				9E85682419A755A000BC9F38 /* help.c in Sources */,
 				9E3F99ED199F68BD0014B18B /* testparser.c in Sources */,
 				9E6D016E19A36453007B8874 /* error.c in Sources */,
 				9E6D017119A39922007B8874 /* usbfacade.c in Sources */,

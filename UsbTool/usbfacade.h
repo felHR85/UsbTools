@@ -16,7 +16,7 @@ typedef struct UsbDevice
 
 typedef struct UsbResponse
 {
-    int response; // 0 error , 1 ok
+    int response; // equal or greater than zero -> OK
     uint8_t bm_request_type;
     uint8_t b_request;
     uint16_t w_value;

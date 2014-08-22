@@ -81,7 +81,6 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
                 close_usb_session(&context);
                 return -1;
             }
-            
             libusb_close(device_handle);
             close_usb_session(&context);
             return 0;
@@ -107,7 +106,7 @@ int list_usb_devices(UsbDevice*** devices)
     if(open_usb_session(&context) == 0)
     {
         ssize_t count = libusb_get_device_list(context, &devs);
-        *devices = malloc(count * sizeof(UsbDevice*));
+        *devices = malloc((count + 1) * sizeof(UsbDevice*));
         
         struct libusb_device_descriptor* descriptor;
         
@@ -121,6 +120,7 @@ int list_usb_devices(UsbDevice*** devices)
             }
         }
         
+        devices[count] = NULL;
         libusb_free_device_list(devs, 1);
         close_usb_session(&context);
         return (int) count;
