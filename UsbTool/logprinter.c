@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include "logprinter.h"
 
+const int OK_RESPONSES = 0;
+const int NO_OK_RESPONSES = 1;
+
 void print_responses_log(UsbResponse** responses, int options)
 {
     if(options == OK_RESPONSES)
@@ -34,9 +37,9 @@ void print_responses_log(UsbResponse** responses, int options)
                 printf("wValue: %x    ", responses[i]->w_value);
                 printf("wIndex: %x    ", responses[i]->w_index);
                 printf("wLength: %x    ", responses[i]->w_length);
+                printf("\n");
             }
         }
-        printf("\n");
     }
 }
 

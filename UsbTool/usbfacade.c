@@ -58,6 +58,8 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
     
     if(open_usb_session(&context) == 0) // LibUsb session opened
     {
+        libusb_set_debug(context, 3);
+        
         int vid_integer = (int) strtol(parser->vid, NULL, 16);
         int pid_integer = (int) strtol(parser->pid, NULL, 16);
         
@@ -69,15 +71,16 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
             {
                 *requests = malloc(sizeof(256 * sizeof(UsbResponse*)));
                 
-                for(uint8_t i=0;i<=255;i++)
+                for(int i=0;i<=255;i++)
                 {
                     int response = libusb_control_transfer(device_handle, bm_request, i, 0x0000, 0x0000, NULL, 0x0000, 500);
                     
-                    (*requests[i])->response = response;
-                    (*requests[i])->bm_request_type = bm_request;
-                    (*requests[i])->b_request = i;
-                    (*requests[i])->w_value = 0x0000;
-                    (*requests[i])->w_index = 0x0000;
+                    (*requests)[i] = malloc(sizeof(UsbResponse));
+                    (*requests)[i]->response = response;
+                    (*requests)[i]->bm_request_type = bm_request;
+                    (*requests)[i]->b_request = i;
+                    (*requests)[i]->w_value = 0x0000;
+                    (*requests)[i]->w_index = 0x0000;
                 }
             }else
             {
@@ -85,6 +88,7 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
                 close_usb_session(&context);
                 return INTERFACE_NOT_CLAIMED;
             }
+            libusb_release_interface(device_handle, 0);
             libusb_close(device_handle);
             close_usb_session(&context);
             return 0;
