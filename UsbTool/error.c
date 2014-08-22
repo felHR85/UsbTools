@@ -3,6 +3,7 @@
  */
 #include <stdio.h>
 #include "parser.h"
+#include "usbfacade.h"
 
 void print_parsing_error(int error)
 {
@@ -37,6 +38,25 @@ void print_parsing_error(int error)
             break;
         default:
             printf("A parsing error occurred\n");
+            break;
+    }
+}
+
+void print_usb_error(int error)
+{
+    switch (error)
+    {
+        case -1: // LIBUSB_INIT_FAILED
+            printf("libusb could not be initialized\n");
+            break;
+        case -2: // NO_DEVICE_PRESENT
+            printf("Device with given VID or PID is not present\n");
+            break;
+        case -3: // INTERFACE_NOT_CLAIMED
+            printf("Interface could not be claimed\n");
+            break;
+        default:
+            printf("An error ocurred\n");
             break;
     }
 }

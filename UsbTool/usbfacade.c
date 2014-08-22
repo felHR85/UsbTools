@@ -8,6 +8,10 @@
 #include "parser.h"
 #include <libusb.h>
 
+const int LIBUSB_INIT_FAILED = -1;
+const int NO_DEVICE_PRESENT = -2;
+const int INTERFACE_NOT_CLAIMED = -3;
+
 static int open_usb_session(libusb_context** context)
 {
     return libusb_init(context);
@@ -79,7 +83,7 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
             {
                 libusb_close(device_handle);
                 close_usb_session(&context);
-                return -1;
+                return INTERFACE_NOT_CLAIMED;
             }
             libusb_close(device_handle);
             close_usb_session(&context);
@@ -87,13 +91,13 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
         }else
         {
             close_usb_session(&context);
-            return -1;
+            return NO_DEVICE_PRESENT;
         }
         
     }else // Some error occurred
     {
         close_usb_session(&context);
-        return -1;
+        return LIBUSB_INIT_FAILED;
     }
    
 }

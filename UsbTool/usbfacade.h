@@ -7,6 +7,10 @@
 
 #include "parser.h"
 
+extern const int LIBUSB_INIT_FAILED;
+extern const int NO_DEVICE_PRESENT;
+extern const int INTERFACE_NOT_CLAIMED;
+
 typedef struct UsbDevice
 {
     uint16_t id_vendor;

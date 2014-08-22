@@ -366,3 +366,8 @@ int help_selected(UsbParser* parser)
 {
     return parser->help;
 }
+
+int list_selected(UsbParser* parser)
+{
+    return parser->list;
+}
