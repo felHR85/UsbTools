@@ -67,7 +67,7 @@ int setup_packet(UsbParser* parser, UsbResponse*** requests)
         if(device_handle != NULL)
         {
             uint8_t bm_request = create_setup_bmrequest(parser);
-            if(libusb_claim_interface(device_handle, 0))
+            if(libusb_claim_interface(device_handle, 0) == 0)
             {
                 *requests = malloc(sizeof(256 * sizeof(UsbResponse*)));
                 
